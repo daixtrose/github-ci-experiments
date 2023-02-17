@@ -16,4 +16,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-      - run: echo "${{ matrix.os }}--${{ matrix.version }}"
+        run: echo "${{ matrix.os }}--${{ matrix.version }}"
