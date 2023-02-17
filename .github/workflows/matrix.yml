@@ -31,4 +31,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ gitversion }}"
+        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }}"
