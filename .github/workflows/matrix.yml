@@ -35,5 +35,5 @@ jobs:
         run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }}"
       - name: Clone Copperspice
         run:
-          git clone --branch ${{ matrix.os.cs_releasetag }} --depth 1 https://github.com/copperspice/copperspice \
-          && git log
+          git clone --branch ${{ matrix.os.cs_releasetag }} --depth 1 https://github.com/copperspice/copperspice && \
+          git log
