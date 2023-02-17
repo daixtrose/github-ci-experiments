@@ -27,9 +27,13 @@ jobs:
             { base: ubuntu, version: 22.04.3 },
             { base: debian, version: 11 },
           ]
-        gitversion: [1.5.2, 2.3.2]
+        gitversion: [ 2.3.2 ],
+        cs_releasetag: [ cs-1.8.1, cs-1.8.0 ]
     runs-on: ubuntu-latest
     steps:
       - name: Echo
         run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }}"
-# test
+      - name: Clone Copperspice
+        run: 
+          git clone --branch ${{ matrix.os.cs_releasetag }} --depth 1 https://github.com/copperspice/copperspice
+          git log
