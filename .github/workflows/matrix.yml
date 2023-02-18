@@ -34,12 +34,12 @@ jobs:
         include:
           - target_platform: armhf
             compiler: [
-              { c: '${{ matrix.compiler.c }}-arm-linux-gnueabihf', 
-                cpp: '${{ matrix.compiler.c }}-arm-linux-gnueabihf' } ]
+              { c: '${{ compiler.c }}-arm-linux-gnueabihf', 
+                cpp: '${{ compiler.c }}-arm-linux-gnueabihf' } ]
           - target_platform: arm64
             compiler: [
-              { c: '${{ matrix.compiler.c }}-aarch64-linux-gnu', 
-                cpp: '${{ matrix.compiler.c }}-aarch64-linux-gnu' } ]
+              { c: '${{ compiler.c }}-aarch64-linux-gnu', 
+                cpp: '${{ compiler.c }}-aarch64-linux-gnu' } ]
                  
     runs-on: ubuntu-22.04
     steps:
