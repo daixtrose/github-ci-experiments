@@ -23,18 +23,58 @@ jobs:
       matrix:
         os:
           [
-            { base: ubuntu, version: 20.04 },
+#            { base: ubuntu, version: 20.04.5 },
             { base: ubuntu, version: 22.04.3 },
-            { base: debian, version: 11 },
+#            { base: debian, version: 11 },
           ]
         gitversion: [2.3.2]
         cs_releasetag: [cs-1.8.1, cs-1.8.0]
-    runs-on: ubuntu-latest
+        target_platform: [x86-64, armhf, arm64]
+        compiler: [{ c: gcc-10, cpp: g++-10 }]
+        include:
+          - target_platform: armhf
+            compiler: [
+              { c: '${{ matrix.compiler.c }}-arm-linux-gnueabihf', 
+                cpp: '${{ matrix.compiler.c }}-arm-linux-gnueabihf' } ]
+          - target_platform: arm64
+            compiler: [
+              { c: '${{ matrix.compiler.c }}-aarch64-linux-gnu', 
+                cpp: '${{ matrix.compiler.c }}-aarch64-linux-gnu' } ]
+                 
+    runs-on: ubuntu-22.04
     steps:
       - name: Echo
-        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }}"
-      - name: Clone Copperspice
-        run:
-          git clone --branch ${{ matrix.cs_releasetag }}
-          --depth 1 https://github.com/copperspice/copperspice
+        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler.cpp }}"
+      # - name: Clone Copperspice
+      #   run:
+      #     git clone --branch ${{ matrix.cs_releasetag }}
+      #     --depth 1 https://github.com/copperspice/copperspice
           ## && git log
+      -
+#
+# TODO: check https://github.com/marketplace/actions/arm-runner
+# https://wiki.debian.org/Multiarch/HOWTO
+
+# List of possible Debian architectures
+# Retrieved from https://wiki.debian.org/ArchitectureSpecificsMemo
+# amd64, arc, arm64, armel, armhfm, i386m mips, mipsel, mips64el, powerpc, powerpcspe, ppc64, ppc64el, s390x, loong64
+
+# i386	1762483
+# all	776922
+# powerpc	34420
+# ia64	18224
+# hppa	5985
+# sparc	1293
+# m68k	987
+# alpha	824
+# arm	45
+# mips	14
+# mipsel	6
+# s390	3
+
+# 'hf' means hard-float which indicates that the compiler and its underlying
+# libraries are using hardware floating point instructions rather than a
+# software implementation of floating point such as fixed point software
+# implementations.
+#  gcc-10-arm-linux-gnueabihf \
+#  g++-10-arm-linux-gnueabihf
