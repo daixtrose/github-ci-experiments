@@ -30,18 +30,20 @@ jobs:
         gitversion: [2.3.2]
         cs_releasetag: [cs-1.8.1, cs-1.8.0]
         target_platform: [x86-64] # armhf, arm64 added below
-        compiler: [{ c: gcc-10, cpp: g++-10 }]
-        compiler_postfix: [{ c: '', cpp: '' }]
+#        compiler_postfix: [{ c: '', cpp: '' }]
         include:
+          - compiler: [{ c: gcc-10, cpp: g++-10 }]
           - target_platform: armhf
-            compiler_postfix: [{ c: '-arm-linux-gnueabihf', cpp: '-arm-linux-gnueabihf' }]
-          - target_platform: arm64
-            compiler_postfix: [{ c: '-aarch64-linux-gnu', cpp: '-aarch64-linux-gnu' }]
+            compiler: [{ c: gcc-10-arm-linux-gnueabihf, cpp: g++-10-arm-linux-gnueabihf }]          
+          #   compiler_postfix: [{ c: '-arm-linux-gnueabihf', cpp: '-arm-linux-gnueabihf' }]
+          # - target_platform: arm64
+          #   compiler_postfix: [{ c: '-aarch64-linux-gnu', cpp: '-aarch64-linux-gnu' }]
     runs-on: ubuntu-22.04
     steps:
       - name: Echo 1
-        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler.cpp }}${{ matrix.compiler_postfix.cpp }}"
-      - run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler.c }}${{ matrix.compiler_postfix.c }}"
+        run: 
+          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler.cpp }}${{ matrix.compiler_postfix.cpp }}"
+          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler.c }}${{ matrix.compiler_postfix.c }}"
       # - name: Clone Copperspice
       #   run:
       #     git clone --branch ${{ matrix.cs_releasetag }}
