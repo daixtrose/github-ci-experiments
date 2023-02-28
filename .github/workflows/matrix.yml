@@ -47,7 +47,6 @@ jobs:
       #     git clone --branch ${{ matrix.cs_releasetag }}
       #     --depth 1 https://github.com/copperspice/copperspice
           ## && git log
-      -
 #
 # TODO: check https://github.com/marketplace/actions/arm-runner
 # https://wiki.debian.org/Multiarch/HOWTO
