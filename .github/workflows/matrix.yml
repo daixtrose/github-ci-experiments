@@ -34,9 +34,10 @@ jobs:
         include:
           - compiler_c: gcc-10
             compiler_cpp: g++-10
-          - compiler_c: gcc-10-arm-linux-gnueabihf
+          - target_platform: armhf  
+            compiler_c: gcc-10-arm-linux-gnueabihf
             compiler_cpp: g++-10-arm-linux-gnueabihf
-            target_platform: armhf  
+            
           # - compiler: [{ c: gcc-10, cpp: g++-10 }]
           # - compiler: [{ c: gcc-10-arm-linux-gnueabihf, cpp: g++-10-arm-linux-gnueabihf }]          
           #   target_platform: armhf
@@ -48,10 +49,10 @@ jobs:
     steps:
       - name: Echo C++
         run: 
-          echo "${{ matrix.os.base }} ${{ matrix.os.version }} ${{ matrix.target_platform }} ${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }} ${{ matrix.compiler_cpp }}"
+          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler_cpp }}"
       - name: Echo C
         run:
-          echo echo "${{ matrix.os.base }} ${{ matrix.os.version }} ${{ matrix.target_platform }} ${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }} ${{ matrix.compiler_c }}"
+          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler_c }}"
       # - name: Clone Copperspice
       #   run:
       #     git clone --branch ${{ matrix.cs_releasetag }}
