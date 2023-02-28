@@ -33,8 +33,9 @@ jobs:
 #        compiler_postfix: [{ c: '', cpp: '' }]
         include:
           - compiler: [{ c: gcc-10, cpp: g++-10 }]
-          - target_platform: armhf
-            compiler: [{ c: gcc-10-arm-linux-gnueabihf, cpp: g++-10-arm-linux-gnueabihf }]          
+          - compiler: [{ c: gcc-10-arm-linux-gnueabihf, cpp: g++-10-arm-linux-gnueabihf }]          
+            target_platform: armhf
+            
           #   compiler_postfix: [{ c: '-arm-linux-gnueabihf', cpp: '-arm-linux-gnueabihf' }]
           # - target_platform: arm64
           #   compiler_postfix: [{ c: '-aarch64-linux-gnu', cpp: '-aarch64-linux-gnu' }]
