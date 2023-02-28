@@ -29,7 +29,7 @@ jobs:
           ]
         gitversion: [2.3.2]
         cs_releasetag: [cs-1.8.1, cs-1.8.0]
-        target_platform: [x86-64] # armhf, arm64 added below
+        target_platform: [x86-64, armhf] #, arm64 added below
 #        compiler_postfix: [{ c: '', cpp: '' }]
         include:
           - compiler_c: gcc-10
