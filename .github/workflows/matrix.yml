@@ -48,10 +48,10 @@ jobs:
     steps:
       - name: Echo C++
         run: 
-          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler_cpp }}"
+          echo "${{ matrix.os.base }} ${{ matrix.os.version }} ${{ matrix.target_platform }} ${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }} ${{ matrix.compiler_cpp }}"
       - name: Echo C
         run:
-          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__git-${{ matrix.gitversion }} ${{ matrix.compiler_c }}"
+          echo echo "${{ matrix.os.base }} ${{ matrix.os.version }} ${{ matrix.target_platform }} ${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }} ${{ matrix.compiler_c }}"
       # - name: Clone Copperspice
       #   run:
       #     git clone --branch ${{ matrix.cs_releasetag }}
