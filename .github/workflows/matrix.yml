@@ -52,14 +52,18 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Echo C++
-        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.cpp }}${{ matrix.compiler_postfix.cpp }}"
-      - name: Echo C
-        run: echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.c }}${{ matrix.compiler_postfix.c }}"
+        run: |
+          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.cpp }}${{ matrix.compiler_postfix.cpp }}"
+          echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.c }}${{ matrix.compiler_postfix.c }}"
+      - name: Dummy Echo
+        run: |-
+          echo "Done"
       # - name: Clone Copperspice
       #   run:
       #     git clone --branch ${{ matrix.cs_releasetag }}
       #     --depth 1 https://github.com/copperspice/copperspice
       ## && git log
+
 #
 # TODO: check https://github.com/marketplace/actions/arm-runner
 # https://wiki.debian.org/Multiarch/HOWTO
