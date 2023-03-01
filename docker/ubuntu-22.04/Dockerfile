@@ -1,15 +1,25 @@
 ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update \
-    && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
+    && apt-get install -y --no-install-recommends \
     lsb-release \
     pkg-config \
     ubuntu-desktop \
+    task-gnome-desktop \
     firefox \
     xrdp \
+    net-tools \
+    xorgxrdp \
+    less \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+
+# dbus-x11 war wohl nicht nötig
+#  task-gnome-desktop?
 
 # firefox
 # sudo apt -y install xrdp
@@ -17,3 +27,9 @@ RUN apt-get update \
 # //sudo systemctl restart xrdp
 
 # sudo ufw allow 3389
+
+# ENTRYPOINT ["/usr/bin/entrypoint"]
+
+COPY entrypoint.sh /usr/bin/entrypoint
+# EXPOSE 3389/tcp
+ENTRYPOINT ["/usr/bin/entrypoint"]
