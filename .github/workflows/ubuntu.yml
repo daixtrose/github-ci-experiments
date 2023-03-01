@@ -27,7 +27,7 @@ jobs:
           build-args: |
             BASE_IMAGE=ubuntu:22.04
             ghcr.io/daixtrose/ubuntu-22.04-xrdp:latest
-          context: .
+          context: ./docker/ubuntu-22.04
           file: ./docker/ubuntu-22.04/Dockerfile
           push: true
           secrets: |
