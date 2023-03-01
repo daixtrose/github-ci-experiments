@@ -3,6 +3,9 @@ FROM $BASE_IMAGE
 
 ENV DEBIAN_FRONTEND noninteractive
 
+COPY entrypoint.sh /usr/bin/entrypoint
+ENTRYPOINT ["/usr/bin/entrypoint"]
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     lsb-release \
@@ -30,6 +33,3 @@ RUN apt-get update \
 
 # ENTRYPOINT ["/usr/bin/entrypoint"]
 
-COPY entrypoint.sh /usr/bin/entrypoint
-# EXPOSE 3389/tcp
-ENTRYPOINT ["/usr/bin/entrypoint"]
