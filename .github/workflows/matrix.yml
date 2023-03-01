@@ -56,7 +56,7 @@ jobs:
           echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.cpp }}${{ matrix.compiler_postfix.cpp }}"
           echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.c }}${{ matrix.compiler_postfix.c }}"
       - name: Conditional Run
-        run: ${{ matrix.compiler_postfix.cpp != "" }} |-
+        run: ${{ matrix.compiler_postfix.cpp != '' }} |-
           echo "Cross Compiler!"
       # - name: Clone Copperspice
       #   run:
