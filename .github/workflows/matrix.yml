@@ -27,22 +27,28 @@ jobs:
             { base: ubuntu, version: 22.04.3 },
             { base: debian, version: 11 },
           ]
+        # We use a rather new version of git for shallow, sparse clones to save CO2 emsissions.
+        # Recommended reading:
+        # GitHub blog "Get up to speed with partial clone and shallow clone "
+        # url: https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
         gitversion: [2.3.2]
-        cs_releasetag: [cs-1.8.1] # or: [cs-1.8.1, cs-1.8.0]
-        # The build platform is the one
+        # The list of CopperSpice version we want to support
+        cs_releasetag: [cs-1.8.1]
+        # The build platform is the one we use for running the compiler or cross compiler
         build_platform: [x86-64]
+        # The target platform is the one where the artefacts will run
         target_platform: [x86-64, armhf, arm64]
-        compiler: [{ c: gcc-10, cpp: g++-10 }]
+        # The selected C and C++ compilers
+        compiler: [{ c: gcc-11, cpp: g++-11 }]
 
-        # We use the include feature to switch to the corresponding cross-compiler
+        # The include feature is used to switch to cross-compilers using
         include:
           - compiler_postfix: { c: "", cpp: "" }
           - target_platform: armhf
             compiler_postfix:
-              { c: "-arm-linux-gnueabihf", cpp: "-arm-linux-gnueabihf" }
+              { c: -arm-linux-gnueabihf, cpp: -arm-linux-gnueabihf }
           - target_platform: arm64
-            compiler_postfix:
-              { c: "-aarch64-linux-gnu", cpp: "-aarch64-linux-gnu" }
+            compiler_postfix: { c: -aarch64-linux-gnu, cpp: -aarch64-linux-gnu }
     runs-on: ubuntu-22.04
     steps:
       - name: Echo C++
