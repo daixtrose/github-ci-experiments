@@ -56,13 +56,15 @@ jobs:
           echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.cpp }}${{ matrix.compiler_postfix.cpp }}"
           echo "${{ matrix.os.base }}-${{ matrix.os.version }}__${{ matrix.target_platform }}__${{ matrix.cs_releasetag }}__git-${{ matrix.gitversion }}__${{ matrix.compiler.c }}${{ matrix.compiler_postfix.c }}"
       - name: Conditional Run
-        run: ${{ matrix.compiler_postfix.cpp != '' }} |-
+        if: ${{ matrix.compiler_postfix.cpp != '' }}
+        run: |-
           echo "Cross Compiler!"
       # - name: Clone Copperspice
       #   run:
       #     git clone --branch ${{ matrix.cs_releasetag }}
       #     --depth 1 https://github.com/copperspice/copperspice
       ## && git log
+
 #
 # TODO: check https://github.com/marketplace/actions/arm-runner
 # https://wiki.debian.org/Multiarch/HOWTO
